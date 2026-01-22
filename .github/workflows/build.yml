@@ -1,0 +1,21 @@
+name: GBA Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest  # The magic container with all GBA tools installed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Compile
+      run: make
+
+    - name: Upload GBA ROM
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-gba-game
+        path: game.gba
