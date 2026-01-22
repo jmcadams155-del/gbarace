@@ -19,3 +19,11 @@ jobs:
       with:
         name: my-gba-game
         path: game.gba
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest # Uses the official devkitPro image
+    steps:
+      - checkout: code
+      - name: Compile
+        run: make
